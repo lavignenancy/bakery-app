@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../models/user_session.dart';
 import '../theme.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -7,6 +9,9 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final session = context.watch<UserSession>();
+    final user = session.user ?? AppUser.guest();
+
     return Scaffold(
       backgroundColor: AppColors.cream,
       appBar: AppBar(
@@ -29,20 +34,20 @@ class ProfileScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                'Maya Carter',
+                user.fullName,
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                'Premium member',
-                style: TextStyle(color: AppColors.textFaded),
+              Text(
+                user.membership,
+                style: const TextStyle(color: AppColors.textFaded),
               ),
               const SizedBox(height: 24),
-              const _InfoRow(label: 'Email', value: 'maya@example.com'),
+              _InfoRow(label: 'Email', value: user.email),
               const SizedBox(height: 12),
-              const _InfoRow(label: 'Address', value: 'Regent Street, 16'),
+              _InfoRow(label: 'Address', value: user.address),
               const SizedBox(height: 12),
               const _InfoRow(label: 'Favorites', value: '12 saved items'),
             ],

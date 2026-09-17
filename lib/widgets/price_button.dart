@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
 
-/// Full-width orange button with a price label on the left and an action
-/// label on the right, as in the design.
 class PriceButton extends StatelessWidget {
   const PriceButton({
     super.key,

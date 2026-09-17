@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../models/user_session.dart';
 import '../theme.dart';
 import 'home_screen.dart';
 
@@ -105,6 +107,12 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 54,
                   child: ElevatedButton(
                     onPressed: () {
+                      final session = context.read<UserSession>();
+                      session.signIn(
+                        email: _emailController.text,
+                        fullName: _nameController.text,
+                      );
+
                       Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute<void>(builder: (_) => const HomeScreen()),
                         (route) => false,

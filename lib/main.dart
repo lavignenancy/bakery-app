@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'models/cart.dart';
+import 'models/user_session.dart';
 import 'screens/login_screen.dart';
 import 'theme.dart';
 
@@ -22,8 +23,11 @@ class BakeryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => Cart(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Cart()),
+        ChangeNotifierProvider(create: (_) => UserSession()),
+      ],
       child: MaterialApp(
         title: 'Bakery',
         debugShowCheckedModeBanner: false,
