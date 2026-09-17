@@ -2,16 +2,16 @@
 
 Three screens matching the reference design:
 
-1. **Home** — address header ("Regent Street, 16"), 3×2 category grid with a
+1. **Home**:address header ("Regent Street, 16"), 3×2 category grid with a
    promo tile, "Places" carousel, "Best products" carousel, bottom nav bar.
-2. **Product detail** — full-bleed hero image, name + weight, description,
+2. **Product detail**: full-bleed hero image, name + weight, description,
    "Add to order" add-on picker (multi-select), price/action button.
-3. **Cart** — item list with quantity steppers, subtotal, checkout button.
+3. **Cart**: item list with quantity steppers, subtotal, checkout button.
 
 ## Setup
 
 ```bash
-flutter create .   # generates android/ios/etc. folders around this code
+flutter create Bakery_app
 flutter pub get
 flutter run
 ```
