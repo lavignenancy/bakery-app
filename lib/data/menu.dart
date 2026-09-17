@@ -1,6 +1,5 @@
 import '../models/product.dart';
 
-/// Central place to tweak the demo menu and image paths.
 const demoProducts = [
   Product(
     id: 'choco-croissant',
