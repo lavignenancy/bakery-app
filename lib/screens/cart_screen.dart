@@ -5,6 +5,7 @@ import '../models/cart.dart';
 import '../theme.dart';
 import '../widgets/app_network_image.dart';
 import '../widgets/price_button.dart';
+import 'checkout_screen.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -82,10 +83,9 @@ class CartScreen extends StatelessWidget {
             label: 'Checkout',
             price: cart.subtotal,
             onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Checkout is ready!'),
-                  backgroundColor: AppColors.orangeDeep,
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const CheckoutScreen(),
                 ),
               );
             },

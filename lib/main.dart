@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'models/cart.dart';
-import 'screens/home_screen.dart';
+import 'screens/login_screen.dart';
 import 'theme.dart';
 
 void main() {
@@ -28,7 +28,7 @@ class BakeryApp extends StatelessWidget {
         title: 'Bakery',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light,
-        home: const HomeScreen(),
+        home: const LoginScreen(),
       ),
     );
   }

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../data/menu.dart';
 import '../theme.dart';
 import '../widgets/bakery_nav_bar.dart';
-import '../widgets/category_card.dart';
 import '../widgets/place_card.dart';
 import '../widgets/product_card.dart';
 import '../widgets/section_header.dart';
+import 'checkout_screen.dart';
 import 'product_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -31,7 +31,16 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           children: [
             const SizedBox(height: 8),
-            _buildCategoryGrid(context),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const CheckoutScreen(),
+                  ),
+                );
+              },
+              child: _buildPromoBanner(),
+            ),
             const SizedBox(height: 24),
             const SectionHeader(title: 'Places'),
             const SizedBox(height: 12),
@@ -55,49 +64,60 @@ class HomeScreen extends StatelessWidget {
             fontWeight: FontWeight.w600,
           );
 
-  Widget _buildCategoryGrid(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 3,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 8,
-      crossAxisSpacing: 8,
-      childAspectRatio: 0.75,
-      children: const [
-        CategoryCard(
-          label: 'Bakery',
-          image:
-              'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
-          accent: true,
+  Widget _buildPromoBanner() {
+    return Container(
+      height: 150,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(22),
+        gradient: const LinearGradient(
+          colors: [Color(0xFFF4C98B), Color(0xFFE99B5A)],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
         ),
-        CategoryCard(
-          label: 'Cookies',
-          image:
-              'https://images.unsplash.com/photo-1499636136210-6d4ee4879e5b?auto=format&fit=crop&w=800&q=80',
-        ),
-        CategoryCard(
-          label: 'Drinks',
-          image:
-              'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80',
-        ),
-        CategoryCard(
-          label: 'Donuts',
-          image:
-              'https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=800&q=80',
-        ),
-        CategoryCard(
-          label: 'Pizza',
-          image:
-              'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80',
-        ),
-        CategoryCard(
-          label: 'Salads',
-          image:
-              'https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=800&q=80',
-        ),
-      ],
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Weekend surprise',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  '40% off',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 34,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  'On curated bakery boxes',
+                  style: TextStyle(
+                    color: Colors.white.withValues(alpha: 0.9),
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Icon(Icons.local_offer_rounded, color: Colors.white, size: 46),
+        ],
+      ),
     );
   }
+
 }
 
 class _PlacesRow extends StatelessWidget {
